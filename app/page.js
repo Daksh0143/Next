@@ -3,6 +3,7 @@ import { Button, Grid, ListItemIcon, ListItemText, Menu, MenuItem, Typography } 
 import { useState } from "react";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import Data from "./Data"
+import Cultting from "./Cultting";
 
 
 
@@ -20,16 +21,17 @@ export default function Home() {
   const data = [{
     title: "Sports",
     icon: <SportsSoccerIcon />,
-    onClick: () => setComponentRender(<Data handleClick={handleClick} />),
     menus: [{
       title: "Active Matches",
+      onClick:()=>setComponentRender(<Data handleClick={handleClick}/>)
     }]
   }, {
     title: "Cultting",
     icon: <SportsSoccerIcon />,
-    onClick: () => setComponentRender(<Data handleClick={handleClick} />),
+    // onClick: () => setComponentRender(<Data handleClick={handleClick} />),
     menus: [{
-      title: "Cultting Agents"
+      title: "Cultting Agents",
+      onClick: () => setComponentRender(<Cultting handleClick={handleClick} />)
     }]
   }]
 
@@ -46,7 +48,7 @@ export default function Home() {
 
 
   const handleMenuItemClick = (menu) => {
-    console.log("Menu ",menu)
+    console.log("Menu ", menu)
     if (menu.onClick) {
       menu.onClick();
     }
@@ -74,7 +76,7 @@ export default function Home() {
           }}
         >
           {menuData?.map((element, index) => (
-            <MenuItem key={index} onClick={(e) => handleMenuItemClick(e)} >
+            <MenuItem key={index} onClick={() => handleMenuItemClick(element)} >
               <ListItemIcon>
                 <SportsSoccerIcon fontSize="small" />
               </ListItemIcon>
